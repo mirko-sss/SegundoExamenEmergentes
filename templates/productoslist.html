@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Datos Personales</legend>
+        Segundo Examen Emergentes TEMP-742 <br>
+        <strong>Mirko Azurduy Huallpa </strong><br>
+        <strong>CI: 12924931</strong><br>
+        <strong>R.U:200019276</strong>
+
+    </fieldset>
+    <h1>Gestión de Productos</h1>
+    <a href="{{url_for('registrar_producto')}}">Nuevo Producto</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Categoría</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        {% for item in productos %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.precio}} Bs.</td>
+            <td>{{item.fecha_vencimiento}}</td>
+            <td>{{item.categoria}}</td>
+            <td><a href="{{url_for('editarlist', id=item.id)}}">Editar</a></td>
+            <td>
+                <form action="{{url_for('eliminar', id=item.id)}}" method="POST">
+                    <input type="submit" value="Eliminar">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
